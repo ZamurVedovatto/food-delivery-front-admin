@@ -26,14 +26,13 @@ function authReducer(state, action) {
     case 'LOGIN':
       return {
         ...state,
-        user: action.payload.user
+        user: action.payload
 			}
     case 'LOGOUT':
       return {
         ...state,
-        user: null,
-        keys: []
-      }
+        user: null
+			}
     default:
       return state
   }
@@ -47,7 +46,7 @@ function AuthProvider(props) {
     localStorage.setItem('jwtToken', data.user.token)
     dispatch({
       type: 'LOGIN',
-      payload: data
+      payload: data.user
     })
   }
 

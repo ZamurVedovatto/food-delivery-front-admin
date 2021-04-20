@@ -11,11 +11,11 @@ export const LOGIN_USER = gql `
     ){
       user {
 				email
-      username
-      id
-      token
-      name
-      createdAt
+				username
+				id
+				token
+				name
+				createdAt
       }
     }
   }

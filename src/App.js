@@ -17,15 +17,9 @@ export default function App() {
 
     <AuthProvider>
       <Router>
-        <AuthRoute path="/">
-					<AdminApp />
-				</AuthRoute>
-        <AuthRoute path='/notfound'>
-					<NotFound />
-				</AuthRoute>
-        <Route path='/login'>
-					<Login />
-				</Route>
+        <Route exact path={["/", "/home"]} component={AdminApp} />
+        <Route path='/notfound' component={NotFound} />
+        <AuthRoute path='/login' component={Login} />
         {/* <AuthRoute path='/register' component={Register} /> */}
       </Router>
     </AuthProvider>

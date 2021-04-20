@@ -32,9 +32,6 @@ export default function Login(props) {
   return (
 		<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
 			<Grid.Column style={{ maxWidth: 450 }}>
-				{/* <Header as='h2' color='teal' textAlign='center'>
-					<Image src='/logo.png' /> Log-in to your account
-				</Header> */}
 				<Form size='large' onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
 					<Segment>
 						<Form.Input
@@ -59,13 +56,12 @@ export default function Login(props) {
 							error={errors?.password ? true : false}
 							onChange={onChange}
 						/>
-
 						<Button color='teal' fluid size='large' type="submit">
 							Acessar
 						</Button>
 					</Segment>
 				</Form>
-				{
+				{/* {
 					Object.keys(errors).length > 0 && (
 						<div className="ui error message">
 							<ul className="list">
@@ -79,63 +75,11 @@ export default function Login(props) {
 							</ul>
 						</div>
 					)
-				}
+				} */}
 				<Message>
 					Não tem acesso? <a href='#'>Registrar-se</a>
 				</Message>
 			</Grid.Column>
 		</Grid>
-
-
-    // <Segment placeholder className="login-wrapper">
-    //   <Grid columns={2} relaxed='very' stackable>
-    //     <Grid.Column>
-    //       <Form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
-    //         <Form.Input
-    //           label="Username"
-    //           placeholder="Username"
-    //           name="username"
-    //           type="text"
-    //           value={values.username}
-    //           error={errors?.username ? true : false}
-    //           onChange={onChange}
-    //         />
-    //         <Form.Input
-    //           label="Password"
-    //           placeholder="Password"
-    //           name="password"
-    //           type="password"
-    //           value={values.password}
-    //           error={errors?.password ? true : false}
-    //           onChange={onChange}
-    //         />
-    //         <Button type="submit" primary>
-    //           Acessar
-    //         </Button>
-    //       </Form>
-    //       {
-    //         Object.keys(errors).length > 0 && (
-    //           <div className="ui error message">
-    //             <ul className="list">
-    //               {
-    //                 Object.values(errors).map(value => (
-    //                   <li key={value}>
-    //                     {value}
-    //                   </li>
-    //                 ))
-    //               }
-    //             </ul>
-    //           </div>
-    //         )
-    //       }
-
-    //     </Grid.Column>
-    //     <Grid.Column verticalAlign='middle'>
-    //       <Button content='Criar conta' icon='signup' size='big' as={Link} to="/register" />
-    //     </Grid.Column>
-    //   </Grid>
-
-    //   <Divider vertical>Ou</Divider>
-    // </Segment>
   )
 }
