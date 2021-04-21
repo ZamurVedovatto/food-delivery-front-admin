@@ -12,6 +12,7 @@ import { FETCH_PRODUCTS } from '../util/graphql';
 import { AuthContext } from './../context/auth'
 import ProdutosAdicionar from './ProdutosAdicionar';
 import ProdutosLista from './ProdutosLista';
+import UploadFile from './UploadFile';
 
 export default function AdminApp() {
   const { logout, user } = useContext(AuthContext)
@@ -140,6 +141,11 @@ export default function AdminApp() {
 								active={activeItem === 'usuários'}
 								onClick={handleItemClick}
 							/>
+							<Menu.Item
+								name='testando'
+								active={activeItem === 'testando'}
+								onClick={handleItemClick}
+							/>
 						</Menu.Menu>
 					</Menu.Item>
 					<Menu.Item>
@@ -173,6 +179,7 @@ export default function AdminApp() {
 					<Grid.Row>
 						{ activeItem === 'lista' && <ProdutosLista loading={loading} products={products} /> }
 						{ activeItem === 'adicionar' && <ProdutosAdicionar refetch={refetch} /> }
+						{ activeItem === 'testando' && <UploadFile /> }
 					</Grid.Row>
 				</Grid>
 			</Grid.Column>
