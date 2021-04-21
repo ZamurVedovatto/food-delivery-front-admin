@@ -20,3 +20,14 @@ export const LOGIN_USER = gql `
     }
   }
 `
+export const FETCH_PRODUCTS = gql `
+	{
+		getProducts {
+			id
+			title
+			description
+			price
+			active
+		}
+	}
+`

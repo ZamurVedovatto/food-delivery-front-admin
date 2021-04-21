@@ -1,22 +1,24 @@
 import React, { useContext, useState } from 'react'
+import { useQuery } from "@apollo/client"
 import {
   Button,
   Divider,
   Grid,
   Header,
   Icon,
-  Input,
-  Image,
-  Label,
-  Menu,
-  Table
+  Menu
 } from "semantic-ui-react";
+import { FETCH_PRODUCTS } from '../util/graphql';
 import { AuthContext } from './../context/auth'
+import ProdutosAdicionar from './ProdutosAdicionar';
+import ProdutosLista from './ProdutosLista';
 
 export default function AdminApp() {
   const { logout, user } = useContext(AuthContext)
 	const [dropdownMenuStyle, setDropdownMenuStyle] = useState("none")
-	const [activeItem, setActiveItem] = useState("novos")
+	const [activeItem, setActiveItem] = useState("lista")
+
+	const { loading, data: { getProducts: products } = {}, refetch} = useQuery(FETCH_PRODUCTS, {})
 
 	const handleItemClick = (e, { name }) => setActiveItem(name)
 
@@ -32,15 +34,6 @@ export default function AdminApp() {
 				<Menu.Item header as="a">
 					FoodDelivery
 				</Menu.Item>
-				{/* <Menu.Menu position="right">
-					<Menu.Item>
-						<Input placeholder="Search..." size="small" />
-					</Menu.Item>
-					<Menu.Item as="a">Dashboard</Menu.Item>
-					<Menu.Item as="a">Settings</Menu.Item>
-					<Menu.Item as="a">Profile</Menu.Item>
-					<Menu.Item as="a">Help</Menu.Item>
-				</Menu.Menu> */}
 			</Menu>
 		</Grid>
 		<Grid padded className="mobile only">
@@ -72,10 +65,7 @@ export default function AdminApp() {
 					<Menu.Item as="a">Settings</Menu.Item>
 					<Menu.Item as="a">Profile</Menu.Item>
 					<Divider fitted />
-					<Menu.Item as="a">Logout</Menu.Item>
-					{/* <Menu.Item>
-						<Input placeholder="Search..." size="small" />
-					</Menu.Item> */}
+					<Menu.Item as="a" onClick={logout}>Logout</Menu.Item>
 				</Menu>
 			</Menu>
 		</Grid>
@@ -89,7 +79,6 @@ export default function AdminApp() {
 				<Menu vertical>
 					<Menu.Item>
 						<Menu.Header>Pedidos</Menu.Header>
-
 						<Menu.Menu>
 							<Menu.Item
 								name='novos'
@@ -123,7 +112,6 @@ export default function AdminApp() {
 							/>
 						</Menu.Menu>
 					</Menu.Item>
-
 					<Menu.Item>
 						<Menu.Header>Produtos</Menu.Header>
 						<Menu.Menu>
@@ -139,10 +127,8 @@ export default function AdminApp() {
 							/>
 						</Menu.Menu>
 					</Menu.Item>
-
 					<Menu.Item>
 						<Menu.Header>Configurações</Menu.Header>
-
 						<Menu.Menu>
 							<Menu.Item
 								name='usuários'
@@ -151,7 +137,6 @@ export default function AdminApp() {
 							/>
 						</Menu.Menu>
 					</Menu.Item>
-
 					<Menu.Item>
 						<Menu.Header></Menu.Header>
 						<Menu.Menu>
@@ -176,17 +161,13 @@ export default function AdminApp() {
 				<Grid padded>
 					<Grid.Row>
 						<Header dividing size="huge" as="h5">
-							{user.name}
+							{activeItem}
 						</Header>
 					</Grid.Row>
 					<Divider section hidden />
 					<Grid.Row>
-						<Header dividing size="huge" as="h1">
-							Section title
-						</Header>
-					</Grid.Row>
-					<Grid.Row>
-						content
+						{ activeItem === 'lista' && <ProdutosLista loading={loading} products={products} /> }
+						{ activeItem === 'adicionar' && <ProdutosAdicionar /> }
 					</Grid.Row>
 				</Grid>
 			</Grid.Column>
