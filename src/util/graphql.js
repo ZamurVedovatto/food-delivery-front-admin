@@ -31,3 +31,30 @@ export const FETCH_PRODUCTS = gql `
 		}
 	}
 `
+export const CREATE_PRODUCT = gql `
+	mutation createProduct($title: String!, $description: String!, $price: String!) {
+		createProduct(title: $title, description: $description, price: $price) {
+			id
+			title
+			description
+			price
+			active
+		}
+	}
+`
+export const TOGGLE_ACTIVE_PRODUCT = gql `
+	mutation toggleActiveProduct($productId: ID!) {
+		toggleActiveProduct(productId: $productId) {
+			id
+			title
+			description
+			price
+			active
+		}
+	}
+`
+export const DELETE_PRODUCT = gql `
+	mutation deleteProduct($productId: ID!) {
+		deleteProduct(productId: $productId)
+	}
+`

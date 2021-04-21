@@ -11,6 +11,7 @@ export const useForm = (callback, initialState = {}) => {
   }
 
   const onSubmit = (event) => {
+		console.log(values)
     event.preventDefault()
     callback();
   }

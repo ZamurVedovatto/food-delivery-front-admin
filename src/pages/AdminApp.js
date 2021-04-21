@@ -131,6 +131,11 @@ export default function AdminApp() {
 						<Menu.Header>Configurações</Menu.Header>
 						<Menu.Menu>
 							<Menu.Item
+								name='empresa'
+								active={activeItem === 'empresa'}
+								onClick={handleItemClick}
+							/>
+							<Menu.Item
 								name='usuários'
 								active={activeItem === 'usuários'}
 								onClick={handleItemClick}
@@ -167,7 +172,7 @@ export default function AdminApp() {
 					<Divider section hidden />
 					<Grid.Row>
 						{ activeItem === 'lista' && <ProdutosLista loading={loading} products={products} /> }
-						{ activeItem === 'adicionar' && <ProdutosAdicionar /> }
+						{ activeItem === 'adicionar' && <ProdutosAdicionar refetch={refetch} /> }
 					</Grid.Row>
 				</Grid>
 			</Grid.Column>
